@@ -3,8 +3,16 @@ nav{
     top:0;
     left:0;
     display:flex;
+    flex-diection: row;
     width: 100vw;
     height:20px;
+}
+nav div{
+    margin: 2px;
+    padding: 2px;
+    gap: 10px;
+    align-items:space-between;
+    justify-items: space-between;
 }
 
 table {
