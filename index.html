@@ -1,31 +1,176 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Fortune 500 Companies</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthyBreaths - Fortune 500 India Financial Data</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
-        <div>About</div>
-        <div>Top 500 companies</div>
-        <div>Wealthiest 500 individuals</div>
-        <div>Connnect</div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">WealthyBreaths</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#search">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="#register">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-    <h1>Fortune 500 Companies</h1>
-    <table id="fortune500">
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Company</th>
-                <th>Revenue</th>
-                <th>Profit</th>
-                <th>Annual Report</th>
-                <th>Investor Presentation</th>
-            </tr>
-        </thead>
-        <tbody>
-            </tbody>
-    </table>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center py-5">
+            <h1>Explore India's Top 500 Companies</h1>
+            <p class="lead">Comprehensive financial data at your fingertips</p>
+            <div class="search-box mt-4">
+                <input type="text" class="form-control" placeholder="Search company name..." id="quickSearch">
+                <button class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Filters Sidebar -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Filters</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Sector</label>
+                            <select class="form-select" id="sectorFilter">
+                                <option value="">All Sectors</option>
+                                <option value="Banking">Banking</option>
+                                <option value="IT">IT</option>
+                                <option value="Oil & Gas">Oil & Gas</option>
+                                <!-- More options -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Revenue Range (INR Cr)</label>
+                            <input type="range" class="form-range" min="0" max="1000000" id="revenueRange">
+                            <div id="revenueValue">0 - 10,00,000</div>
+                        </div>
+                        <!-- More filters -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <!-- Data Table -->
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <h5>Company Financials</h5>
+                        <div>
+                            <button class="btn btn-sm btn-outline-secondary" id="columnToggle">Columns</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="companiesTable">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Company</th>
+                                        <th>Total Income</th>
+                                        <th>Net Profit</th>
+                                        <th>Profit %</th>
+                                        <th>Employees</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Data will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">Email/Username</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input">
+                            <label class="form-check-label">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
